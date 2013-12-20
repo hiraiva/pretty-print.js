@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>prerrty-print.js</title>
+    <link rel="stylesheet" type="text/css" href="pretty-print.css">
+    <script type="text/javascript" src="underscore-min.js"></script>
+    <script type="text/javascript" src="pretty-print.js"></script>
+    <script type="text/javascript">
+window.onload = function() {
+  function be(obj, type, func) {
+    if (obj.addEventListener) {
+      obj.addEventListener(type, func, false);
+    } else if(obj.attachEvent) {
+      obj.attachEvent('on' + type, func);
+    } else {
+      alert('not supported');
+    }
+  }
+
+  be(document.getElementById('btn'), 'click', function (){
+    var js = document.getElementById('json').value,
+    p = document.getElementById('printed');
+    p.innerHTML = '';
+    p.appendChild(prettyPrint(JSON.parse(js)));
+  });
+};
+    </script>
+  </head>
+  <body>
+  	<textarea id="json" style="width: 95%; height: 40em;"></textarea><br>
+  	<input type="button" id="btn" value="pretty print">
+  	<div id="printed"></div>
+  </body>
+</html>
